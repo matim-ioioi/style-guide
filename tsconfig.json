@@ -1,0 +1,17 @@
+{
+  "extends": ["./src/typescript/tsconfig.client.json"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "NodeNext"
+    }
+  },
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": false,
+    "baseUrl": ".",
+    "typeRoots": ["node_modules/@types"],
+    "types": ["node"]
+  },
+  "include": ["eslint.config.mjs", "**/*.ts", "**/*.js"],
+  "exclude": ["node_modules"]
+}

@@ -1,6 +1,7 @@
 import { globalIgnores } from 'eslint/config'
 import prettierConfigs from 'eslint-plugin-prettier/recommended'
 import defaultIgnores from '../constants/ignores.js'
+import { JS_PATHS, TS_PATHS, VUE_PATHS } from '../constants/paths.js'
 import { baseConfigs } from './base/index.js'
 import { commentsConfigs } from './comments/index.js'
 import { graphqlConfigs } from './graphql/index.js'
@@ -18,5 +19,5 @@ export default [
   ...vueConfigs,
   ...baseConfigs,
 
-  prettierConfigs,
+  { ...prettierConfigs, files: [...JS_PATHS, ...TS_PATHS, ...VUE_PATHS] },
 ]

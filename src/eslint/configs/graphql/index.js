@@ -10,6 +10,9 @@ export const graphqlConfigs = [
     },
     languageOptions: {
       parser: graphqlPlugin.parser,
+      parserOptions: {
+        project: false,
+      },
     },
     rules: {
       /**

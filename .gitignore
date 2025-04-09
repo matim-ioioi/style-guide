@@ -51,3 +51,6 @@ $RECYCLE.BIN/
 .fuse_hidden*
 .directory
 .Trash-*
+
+# Packed package
+timmio-style-guide-*.tgz

@@ -19,7 +19,6 @@ export const importSettingsConfig = {
       '@typescript-eslint/parser': ['.ts', '.tsx', '.cts', '.mts'],
       'vue-eslint-parser': ['.vue'],
     },
-    'import-x/internal-regex': '@front',
     'import-x/external-module-folders': ['node_modules', 'node_modules/@types'],
   },
 }

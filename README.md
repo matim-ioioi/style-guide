@@ -2,10 +2,10 @@
 
 ## Introduction
 
-This repo have configuration files for Prettier, Stylelint, TypeScript (tsconfigs) and out-of-the-box configuration for ESLint (including required dependencies)
+This repository has configuration files for Prettier, Stylelint, TypeScript (tsconfigs) and out-of-the-box configuration for ESLint (including required dependencies)
 
-- [Prettier](#prettier)
 - [ESLint](#eslint)
+- [Prettier](#prettier)
 - [StyleLint](#stylelint)
 - [TypeScript](#typescript)
 
@@ -26,6 +26,80 @@ pnpm:
 pnpm add @timmio/style-guide --dev
 ```
 
+## ESLint
+
+> Note: ESLint is in the project dependencies, so there is no need to install it separately
+
+To use ESLint, add the file named `eslint.config.js` to your project root:
+
+<details><summary>Example of ESLint configuration</summary>
+
+```javascript
+import { createESLintConfigs } from '@timmio/style-guide/eslint'
+
+export default createESLintConfigs(
+    {
+      // Add ignore paths
+      ignore: [/* YOUR ADDITIONAL IGNORE PATHS */],
+      // Add browser environment
+      browser: true, // default: true
+      // Add node environment
+      node: true, // default: true
+      // Add graphql linting
+      graphql: true, // default: true
+      // Add vue linting
+      vue: true, // default: true
+      // You can add custom pathGroups for ordering imports
+      import: {
+        order: {
+          pathGroups: {
+            append: [
+              { pattern: '@components/**', group: 'parent', position: 'before' },
+              { pattern: '@constants/**', group: 'parent', position: 'before' },
+            ],
+          },
+        },
+      },
+      // You must provide paths to tsconfigs
+      tsConfigs: {
+        // For script (including .{js,mjs,cjs,jsx and ts,mts,cts,tsx} files)
+        script: {
+          tsConfigPath: './tsconfig.json',
+          tsConfigRootDir: import.meta.dirname,
+        },
+        // For vue (including .vue files) (if you use vue)
+        vue: {
+          tsConfigPath: './tsconfig.eslint.json',
+          tsConfigRootDir: import.meta.dirname,
+        },
+        // For your additional cases (for example use other tsconfig for server directory)
+        extraConfigs: [
+          {
+            files: ['./src/server/*.{js,ts}', './src/server/**/*.{js,ts}'],
+            tsConfigPath: './src/server/tsconfig.json',
+            tsConfigRootDir: import.meta.dirname,
+          },
+        ],
+      },
+    },
+    // You can add extra configs
+    {
+      files: ['*.vue', '**/*.vue'],
+      rules: {
+        'vue/multi-word-component-names': 'off',
+      },
+    }
+)
+```
+</details>
+
+**Your tsconfigs also must have `"eslint.config.js"` in `"include"` option:**
+```json
+{
+  "include": ["eslint.config.js", ...]
+}
+```
+
 ## Prettier
 
 > Note: Prettier is in the project dependencies, so there is no need to install it separately
@@ -34,210 +108,6 @@ To use Prettier, add this line to `package.json`:
 ```json
 {
   "prettier": "@timmio/style-guide/prettier"
-}
-```
-
-## ESLint
-
-> Note: ESLint is in the project dependencies, so there is no need to install it separately
-
-To use ESLint, add the file named `eslint.config.mjs` to your project root:
-
-<details><summary>Full ESLint config (including JS, TS, Vue, GQL)</summary>
-
-```javascript
-import styleGuideEslintConfigs from '@timmio/style-guide/eslint'
-import { browserConfig } from '@timmio/style-guide/eslint/browser'
-import { nodeConfig } from '@timmio/style-guide/eslint/node'
-import typescriptEslint from 'typescript-eslint'
-
-// tsconfig for client-side for example
-const TSCONFIG = './tsconfig.json'
-
-// tsconfig for server-side for example
-const TSCONFIG_SERVER = './src/server/tsconfig.json'
-
-export default typescriptEslint.config(
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- typescriptEslint.config conflict types
-    browserConfig,
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- typescriptEslint.config conflict types
-    nodeConfig,
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- typescriptEslint.config conflict types
-    styleGuideEslintConfigs,
-    {
-      files: ['*.{js,mjs,cjs,jsx,ts,mts,cts,tsx}', '**/*.{js,mjs,cjs,jsx,ts,mts,cts,tsx}'],
-      languageOptions: {
-        parserOptions: {
-          project: TSCONFIG,
-          tsconfigRootDir: import.meta.dirname,
-        },
-      },
-      settings: {
-        'import-x/resolver-next': {
-          typescript: {
-            project: TSCONFIG,
-          },
-        },
-      },
-    },
-    {
-      files: ['*.vue', '**/*.vue'],
-      languageOptions: {
-        parserOptions: {
-          project: TSCONFIG,
-          tsconfigRootDir: import.meta.dirname,
-        },
-      },
-      settings: {
-        'import-x/resolver-next': {
-          typescript: {
-            project: TSCONFIG,
-          },
-          vue: {
-            project: TSCONFIG,
-          },
-        },
-      },
-    },
-    {
-      files: ['./src/server/*.{js,ts}', './src/server/**/*.{js,ts}'],
-      languageOptions: {
-        parserOptions: {
-          project: TSCONFIG_SERVER,
-          tsconfigRootDir: import.meta.dirname,
-        },
-      },
-      settings: {
-        'import-x/resolver-next': {
-          typescript: {
-            project: TSCONFIG_SERVER,
-          },
-        },
-      },
-    },
-    {
-      files: ['*.{gql,graphql}', '**/*.{gql,graphql}'],
-      languageOptions: {
-        parserOptions: {
-          graphQLConfig: {
-            schema: './src/client/app/graphql/federation/schema.graphql',
-            documents: './src/**/*.{gql,graphql}',
-            operations: './src/**/*.{gql,graphql}',
-          },
-        },
-      },
-    }
-)
-```
-</details>
-
-<details><summary>Partial configs usage</summary>
-
-```javascript
-import { browserConfig } from '@timmio/style-guide/eslint/browser'
-import { baseConfigs } from '@timmio/style-guide/eslint/base'
-import { nodeConfig } from '@timmio/style-guide/eslint/node'
-import { commentsConfigs } from '@timmio/style-guide/eslint/comments'
-import { graphqlConfigs } from '@timmio/style-guide/eslint/graphql'
-import { importConfigs } from '@timmio/style-guide/eslint/import'
-import { tsConfigs } from '@timmio/style-guide/eslint/typescript'
-import { vueConfigs } from '@timmio/style-guide/eslint/vue'
-import typescriptEslint from 'typescript-eslint'
-
-// tsconfig for client-side for example
-const TSCONFIG = './tsconfig.json'
-
-// tsconfig for server-side for example
-const TSCONFIG_SERVER = './src/server/tsconfig.json'
-
-export default typescriptEslint.config(
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- typescriptEslint.config conflict types
-    browserConfig, // if need
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- typescriptEslint.config conflict types
-    nodeConfig, // if need
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- typescriptEslint.config conflict types
-    commentsConfigs, // if need
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- typescriptEslint.config conflict types
-    graphqlConfigs, // if you use graphql
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- typescriptEslint.config conflict types
-    importConfigs, // if need
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- typescriptEslint.config conflict types
-    tsConfigs, // if need
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- typescriptEslint.config conflict types
-    vueConfigs, // if you use vue
-    {
-      files: ['*.{js,mjs,cjs,jsx,ts,mts,cts,tsx}', '**/*.{js,mjs,cjs,jsx,ts,mts,cts,tsx}'],
-      languageOptions: {
-        parserOptions: {
-          project: TSCONFIG,
-          tsconfigRootDir: import.meta.dirname,
-        },
-      },
-      settings: {
-        'import-x/resolver-next': {
-          typescript: {
-            project: TSCONFIG,
-          },
-        },
-      },
-    },
-    // if you use vue
-    {
-      files: ['*.vue', '**/*.vue'],
-      languageOptions: {
-        parserOptions: {
-          project: TSCONFIG,
-          tsconfigRootDir: import.meta.dirname,
-        },
-      },
-      settings: {
-        'import-x/resolver-next': {
-          typescript: {
-            project: TSCONFIG,
-          },
-          vue: {
-            project: TSCONFIG,
-          },
-        },
-      },
-    },
-    {
-      files: ['./src/server/*.{js,ts}', './src/server/**/*.{js,ts}'],
-      languageOptions: {
-        parserOptions: {
-          project: TSCONFIG_SERVER,
-          tsconfigRootDir: import.meta.dirname,
-        },
-      },
-      settings: {
-        'import-x/resolver-next': {
-          typescript: {
-            project: TSCONFIG_SERVER,
-          },
-        },
-      },
-    },
-    // if you use graphql
-    {
-      files: ['*.{gql,graphql}', '**/*.{gql,graphql}'],
-      languageOptions: {
-        parserOptions: {
-          graphQLConfig: {
-            schema: './src/client/app/graphql/federation/schema.graphql',
-            documents: './src/**/*.{gql,graphql}',
-            operations: './src/**/*.{gql,graphql}',
-          },
-        },
-      },
-    }
-)
-```
-</details>
-
-**Your tsconfigs also must have `"eslint.config.mjs"` in `"include"` option:**
-```json
-{
-  "include": ["eslint.config.mjs", ...]
 }
 ```
 
@@ -270,8 +140,8 @@ This repo have several configs for TypeScript:
 | Client-side | `@timmio/style-guide/typescript/tsconfig.client.json` |
 | Server-side | `@timmio/style-guide/typescript/tsconfig.server.json` |
 
-> Attention! (limitation `ts-node` (bug with extends and exports))\
-> You must specify a relative path if your tsconfig.json placement is not root of project (or root tsconfig has name not equal to "tsconfig.json")\
+> Attention! (limitation `ts-node` (bug with extending and exports))\
+> You must specify a relative path if your tsconfig.json placement is not root of a project (or root tsconfig has name not equal to "tsconfig.json")\
 > For example:
 ```json
 {

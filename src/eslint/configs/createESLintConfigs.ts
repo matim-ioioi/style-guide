@@ -26,7 +26,7 @@ export const createESLintConfigs = (
     ignore: [],
     browser: true,
     node: true,
-    graphql: true,
+    graphql: false,
     vue: true,
     ...userOptions,
   }

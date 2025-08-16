@@ -46,7 +46,7 @@ export default createESLintConfigs(
       // Add node environment
       node: true, // default: true
       // Add graphql linting
-      graphql: true, // default: true
+      graphql: false, // default: false
       // Add vue linting
       vue: true, // default: true
       // You can add custom pathGroups for ordering imports
@@ -67,9 +67,11 @@ export default createESLintConfigs(
           tsConfigPath: './tsconfig.json',
           tsConfigRootDir: import.meta.dirname,
         },
-        // For vue (including .vue files) (if you use vue)
+        // For vue if you use it (including .vue files)
+        // ATTENTION! For correctly checking and autofixing vue-files by ESLint you need create separately tsconfig-file which can extends your common tsconfig-file
+        // but it must have "**/*.vue" in "include" (or "files") parameter
         vue: {
-          tsConfigPath: './tsconfig.eslint.json',
+          tsConfigPath: './tsconfig.vue.json',
           tsConfigRootDir: import.meta.dirname,
         },
         // For your additional cases (for example use other tsconfig for server directory)
@@ -133,7 +135,7 @@ To use TypeScript configs (tsconfig's), you can extend your `tsconfig`-files:
 }
 ```
 
-This repo have several configs for TypeScript:
+This repository has several configs for TypeScript:
 
 | Can use for | Config path                                           |
 |-------------|-------------------------------------------------------|

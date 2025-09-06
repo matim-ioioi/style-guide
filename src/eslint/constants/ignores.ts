@@ -1,12 +1,12 @@
 export default [
+  // node_modules
   'node_modules',
-  'public',
+
+  // usually build dirs
   'dist',
   '.dist',
-  'charts',
-  'containers',
-  'coverage',
-  '**/__generated__/**',
-  '**/*.d.ts',
-  '**/schema.{gql,graphql}',
+
+  // nuxt
+  '.nuxt',
+  '.output',
 ]

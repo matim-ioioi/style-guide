@@ -1,6 +1,5 @@
 import type { Context } from '../configs/types'
 import typescriptEslint from 'typescript-eslint'
-import { defaultParserOptions } from '../constants/parserOptions.js'
 import { JS_PATHS, TS_PATHS, VUE_PATHS } from '../constants/paths.js'
 
 export const tsPlugin = (context: Context): any => {
@@ -18,7 +17,13 @@ export const tsPlugin = (context: Context): any => {
     },
     languageOptions: {
       parser: typescriptEslint.parser,
-      parserOptions: defaultParserOptions,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        project: context.tsConfigs.script.tsConfigPath,
+        tsconfigRootDir: context.tsConfigs.script.tsConfigRootDir,
+        projectService: context.tsConfigs.script.projectService,
+      },
     },
   }
 }

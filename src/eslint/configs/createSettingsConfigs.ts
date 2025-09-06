@@ -1,15 +1,9 @@
 import type { Context } from './types'
+import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript'
 import { JS_PATHS, TS_PATHS, VUE_PATHS } from '../constants/paths.js'
 
 type ESLintConfigSettings = {
-  'import-x/resolver-next': {
-    typescript: {
-      project: string
-    }
-    vue?: {
-      project: string
-    }
-  }
+  'import-x/resolver-next': ReturnType<typeof createTypeScriptImportResolver>[]
 }
 
 type ESLintConfig = {
@@ -18,12 +12,13 @@ type ESLintConfig = {
     parserOptions: {
       project: string
       tsconfigRootDir: string
+      projectService: boolean
     }
   }
   settings: ESLintConfigSettings
 }
 
-export const createSettingsConfigs = (context: Context & { tsConfigs: NonNullable<Context['tsConfigs']> }) => {
+export const createSettingsConfigs = (context: Context) => {
   const configs: ESLintConfig[] = [
     {
       files: [...JS_PATHS, ...TS_PATHS],
@@ -31,14 +26,16 @@ export const createSettingsConfigs = (context: Context & { tsConfigs: NonNullabl
         parserOptions: {
           project: context.tsConfigs.script.tsConfigPath,
           tsconfigRootDir: context.tsConfigs.script.tsConfigRootDir,
+          projectService: context.tsConfigs.script.projectService ?? false,
         },
       },
       settings: {
-        'import-x/resolver-next': {
-          typescript: {
+        'import-x/resolver-next': [
+          createTypeScriptImportResolver({
             project: context.tsConfigs.script.tsConfigPath,
-          },
-        },
+            alwaysTryTypes: true,
+          }),
+        ],
       },
     },
   ]
@@ -50,17 +47,16 @@ export const createSettingsConfigs = (context: Context & { tsConfigs: NonNullabl
         parserOptions: {
           project: context.tsConfigs.vue.tsConfigPath,
           tsconfigRootDir: context.tsConfigs.vue.tsConfigRootDir,
+          projectService: context.tsConfigs.vue.projectService ?? false,
         },
       },
       settings: {
-        'import-x/resolver-next': {
-          typescript: {
+        'import-x/resolver-next': [
+          createTypeScriptImportResolver({
             project: context.tsConfigs.vue.tsConfigPath,
-          },
-          vue: {
-            project: context.tsConfigs.vue.tsConfigPath,
-          },
-        },
+            alwaysTryTypes: true,
+          }),
+        ],
       },
     })
   }
@@ -68,29 +64,23 @@ export const createSettingsConfigs = (context: Context & { tsConfigs: NonNullabl
   context.tsConfigs.extraConfigs?.map((tsConfig) => {
     const { files, tsConfigPath, tsConfigRootDir } = tsConfig
 
-    const settings: ESLintConfigSettings = {
-      'import-x/resolver-next': {
-        typescript: {
-          project: tsConfigPath,
-        },
-      },
-    }
-
-    if (files?.some((file) => file.endsWith('.vue'))) {
-      settings['import-x/resolver-next'].vue = {
-        project: tsConfigPath,
-      }
-    }
-
     return {
       files: files ?? [...JS_PATHS, ...TS_PATHS, ...(context.vue ? VUE_PATHS : [])],
       languageOptions: {
         parserOptions: {
           project: tsConfigPath,
           tsconfigRootDir: tsConfigRootDir,
+          projectService: tsConfig.projectService ?? false,
         },
       },
-      settings,
+      settings: {
+        'import-x/resolver-next': [
+          createTypeScriptImportResolver({
+            project: tsConfigPath,
+            alwaysTryTypes: true,
+          }),
+        ],
+      },
     }
   })
 

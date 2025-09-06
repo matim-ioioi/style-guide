@@ -12,11 +12,7 @@ import { graphqlConfigs } from './graphql/graphqlConfigs.js'
 import { createImportConfigs } from './import/createImportConfigs.js'
 import { createPrettierConfigs } from './prettier/createPrettierConfigs.js'
 import { createTypeScriptConfigs } from './typescript/createTypeScriptConfigs.js'
-import { vueConfigs } from './vue/vueConfigs.js'
-
-const isHaveTsConfig = (context: Context): context is Context & { tsConfigs: NonNullable<Context['tsConfigs']> } => {
-  return !!context.tsConfigs
-}
+import { createVueConfigs } from './vue/createVueConfigs.js'
 
 export const createESLintConfigs = (
   userOptions: CreateESLintConfigsOptions,
@@ -61,15 +57,12 @@ export const createESLintConfigs = (
     eslintConfigs.push(graphqlConfigs)
   }
   if (context.vue) {
-    eslintConfigs.push(vueConfigs)
+    eslintConfigs.push(createVueConfigs(context))
   }
 
   eslintConfigs.push(baseConfigs)
   eslintConfigs.push(createPrettierConfigs(context))
-
-  if (isHaveTsConfig(context)) {
-    eslintConfigs.push(createSettingsConfigs(context))
-  }
+  eslintConfigs.push(createSettingsConfigs(context))
 
   return typescriptEslint.config(eslintConfigs, extraConfigs ?? [])
 }

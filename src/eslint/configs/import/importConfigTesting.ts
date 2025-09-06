@@ -3,17 +3,20 @@ import { TESTING_PATHS } from '../../constants/paths.js'
 import { createImportOrderRules } from './utils/createImportOrderRules.js'
 
 export const importConfigTesting = (context: Context, pathGroups?: Parameters<typeof createImportOrderRules>[0]) => {
+  const files = [...TESTING_PATHS]
+
+  if (context.testing?.paths) {
+    files.concat(context.testing.paths)
+  }
+
   return {
     name: 'style-guide-import-testing',
-    files: [...TESTING_PATHS],
+    files,
     rules: {
       'import-x/no-cycle': ['warn', { ignoreExternal: true }],
       'import-x/no-restricted-paths': 'off',
       'import-x/order': createImportOrderRules({
-        prepend: [
-          { pattern: '**/test/**/mocks/*', group: 'builtin', position: 'before' },
-          ...(pathGroups?.prepend ?? []),
-        ],
+        prepend: [{ pattern: '**/__mocks__/*', group: 'builtin', position: 'before' }, ...(pathGroups?.prepend ?? [])],
         append: pathGroups?.append,
       }),
     },

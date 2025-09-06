@@ -16,7 +16,4 @@ export const TESTING_PATHS = [
   `**/*.spec.{${JS_TS_EXTENSIONS}}`,
   `**/__test__/*.{${JS_TS_EXTENSIONS}}`,
   `**/__test__/**/*.{${JS_TS_EXTENSIONS}}`,
-  `**/test/**/*.{${JS_TS_EXTENSIONS}}`,
-  `**/test/mocks/**/*.{${JS_TS_EXTENSIONS}}`,
-  `**/test/setup.{${JS_TS_EXTENSIONS}}`,
 ]

@@ -1,13 +1,12 @@
+import type { InfiniteDepthConfigWithExtends } from 'typescript-eslint'
 import stylisticPlugin from '@stylistic/eslint-plugin'
 import globals from 'globals'
 
-export const baseConfigs = [
+export const baseConfigs: InfiniteDepthConfigWithExtends = [
   {
     name: 'style-guide-base',
     languageOptions: {
-      globals: {
-        ...globals.es2024,
-      },
+      globals: globals.es2024,
       ecmaVersion: 'latest',
       sourceType: 'module',
     },

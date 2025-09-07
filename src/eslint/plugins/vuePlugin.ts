@@ -1,10 +1,11 @@
+import type { InfiniteDepthConfigWithExtends } from 'typescript-eslint'
 import type { Context } from '../configs/types'
 import vueEslint from 'eslint-plugin-vue'
 import typescriptEslint from 'typescript-eslint'
 import vueParser from 'vue-eslint-parser'
 import { VUE_PATHS } from '../constants/paths.js'
 
-export const vuePlugin = (context: Context): any => {
+export const vuePlugin = (context: Context): InfiniteDepthConfigWithExtends => {
   let templateParser: string | typeof typescriptEslint.parser = 'espree'
 
   if (typeof context.vue === 'object' && context.vue.useTemplateTypeScriptParser) {

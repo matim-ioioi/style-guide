@@ -1,8 +1,9 @@
+import type { InfiniteDepthConfigWithExtends } from 'typescript-eslint'
 import type { Context } from '../configs/types'
 import typescriptEslint from 'typescript-eslint'
 import { JS_PATHS, TS_PATHS, VUE_PATHS } from '../constants/paths.js'
 
-export const tsPlugin = (context: Context): any => {
+export const tsPlugin = (context: Context): InfiniteDepthConfigWithExtends => {
   const files = [...JS_PATHS, ...TS_PATHS]
 
   if (context.vue) {

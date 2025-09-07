@@ -1,3 +1,4 @@
+import type { InfiniteDepthConfigWithExtends } from 'typescript-eslint'
 import type { Context } from '../types'
 import type { createImportOrderRules } from './utils/createImportOrderRules.js'
 import { importPlugin } from '../../plugins/importPlugin.js'
@@ -8,7 +9,7 @@ import { importConfigTesting } from './importConfigTesting.js'
 export const createImportConfigs = (
   context: Context,
   pathGroups?: Parameters<typeof createImportOrderRules>[0]
-): any[] => {
+): InfiniteDepthConfigWithExtends => {
   return [
     importPlugin(context),
     importConfigDefault(context, pathGroups),

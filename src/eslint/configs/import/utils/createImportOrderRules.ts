@@ -9,7 +9,19 @@ export type ImportOrderPathGroups = {
   append?: PathGroupItem[]
 }
 
-export const createImportOrderRules = (pathGroups?: ImportOrderPathGroups) => {
+export const createImportOrderRules = (
+  pathGroups?: ImportOrderPathGroups
+): [
+  'error',
+  {
+    groups: string[]
+    pathGroups: PathGroupItem[]
+    'newlines-between': 'ignore'
+    alphabetize: { order: 'asc' | 'desc'; orderImportKind: 'asc' | 'desc'; caseInsensitive: boolean }
+    sortTypesGroup: boolean
+    pathGroupsExcludedImportTypes: string[]
+  },
+] => {
   return [
     'error',
     {

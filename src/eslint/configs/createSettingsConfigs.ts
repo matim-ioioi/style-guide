@@ -1,25 +1,10 @@
+import type { InfiniteDepthConfigWithExtends } from 'typescript-eslint'
 import type { Context } from './types'
 import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript'
 import { JS_PATHS, TS_PATHS, VUE_PATHS } from '../constants/paths.js'
 
-type ESLintConfigSettings = {
-  'import-x/resolver-next': ReturnType<typeof createTypeScriptImportResolver>[]
-}
-
-type ESLintConfig = {
-  files: string[]
-  languageOptions: {
-    parserOptions: {
-      project: string
-      tsconfigRootDir: string
-      projectService: boolean
-    }
-  }
-  settings: ESLintConfigSettings
-}
-
 export const createSettingsConfigs = (context: Context) => {
-  const configs: ESLintConfig[] = [
+  const configs: InfiniteDepthConfigWithExtends = [
     {
       files: [...JS_PATHS, ...TS_PATHS],
       languageOptions: {

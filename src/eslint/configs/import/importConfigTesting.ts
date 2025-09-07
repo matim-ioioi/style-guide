@@ -1,8 +1,12 @@
+import type { InfiniteDepthConfigWithExtends } from 'typescript-eslint'
 import type { Context } from '../types'
 import { TESTING_PATHS } from '../../constants/paths.js'
 import { createImportOrderRules } from './utils/createImportOrderRules.js'
 
-export const importConfigTesting = (context: Context, pathGroups?: Parameters<typeof createImportOrderRules>[0]) => {
+export const importConfigTesting = (
+  context: Context,
+  pathGroups?: Parameters<typeof createImportOrderRules>[0]
+): InfiniteDepthConfigWithExtends => {
   const files = [...TESTING_PATHS]
 
   if (context.testing?.paths) {

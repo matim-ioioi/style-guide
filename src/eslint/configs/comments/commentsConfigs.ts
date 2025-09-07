@@ -1,7 +1,8 @@
+import type { InfiniteDepthConfigWithExtends } from 'typescript-eslint'
 // @ts-expect-error -- missed types
 import commentsEslint from '@eslint-community/eslint-plugin-eslint-comments/configs'
 
-export const commentsConfigs = [
+export const commentsConfigs: InfiniteDepthConfigWithExtends = [
   {
     name: 'style-guide-comments',
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- missed typings

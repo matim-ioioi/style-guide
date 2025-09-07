@@ -1,6 +1,7 @@
+import type { InfiniteDepthConfigWithExtends } from 'typescript-eslint'
 import { VUE_PATHS } from '../../constants/paths.js'
 
-export const vueConfigDefault = {
+export const vueConfigDefault: InfiniteDepthConfigWithExtends = {
   name: 'style-guide-vue-default',
   files: [...VUE_PATHS],
   rules: {

@@ -17,7 +17,7 @@ import { createVueConfigs } from './vue/createVueConfigs.js'
 export const createESLintConfigs = (
   userOptions: CreateESLintConfigsOptions,
   ...extraConfigs: InfiniteDepthConfigWithExtends[]
-): any[] => {
+): InfiniteDepthConfigWithExtends => {
   const options = {
     ignore: [],
     browser: true,
@@ -26,7 +26,7 @@ export const createESLintConfigs = (
     vue: true,
     ...userOptions,
   }
-  const eslintConfigs = []
+  const eslintConfigs: InfiniteDepthConfigWithExtends[] = []
 
   const context: Context = {
     browser: options.browser,

@@ -1,7 +1,8 @@
+import type { InfiniteDepthConfigWithExtends } from 'typescript-eslint'
 import type { Context } from '../types'
 import { TESTING_PATHS } from '../../constants/paths.js'
 
-export const tsConfigTesting = (context: Context) => {
+export const tsConfigTesting = (context: Context): InfiniteDepthConfigWithExtends => {
   const files = [...TESTING_PATHS]
 
   if (context.testing?.paths) {

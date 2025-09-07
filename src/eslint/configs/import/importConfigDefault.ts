@@ -1,8 +1,12 @@
+import type { InfiniteDepthConfigWithExtends } from 'typescript-eslint'
 import type { Context } from '../types'
 import { JS_PATHS, TS_PATHS, VUE_PATHS } from '../../constants/paths.js'
 import { createImportOrderRules } from './utils/createImportOrderRules.js'
 
-export const importConfigDefault = (context: Context, pathGroups?: Parameters<typeof createImportOrderRules>[0]) => {
+export const importConfigDefault = (
+  context: Context,
+  pathGroups?: Parameters<typeof createImportOrderRules>[0]
+): InfiniteDepthConfigWithExtends => {
   const files = [...JS_PATHS, ...TS_PATHS]
 
   if (context.vue) {

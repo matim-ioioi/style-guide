@@ -1,12 +1,14 @@
+import type { ESLint } from 'eslint'
+import type { InfiniteDepthConfigWithExtends } from 'typescript-eslint'
 import graphqlPlugin from '@graphql-eslint/eslint-plugin'
 import { GQL_PATHS } from '../../constants/paths.js'
 
-export const graphqlConfigs = [
+export const graphqlConfigs: InfiniteDepthConfigWithExtends = [
   {
     name: 'style-guide-graphql',
     files: [...GQL_PATHS],
     plugins: {
-      '@graphql-eslint': graphqlPlugin,
+      '@graphql-eslint': graphqlPlugin as ESLint.Plugin,
     },
     languageOptions: {
       parser: graphqlPlugin.parser,

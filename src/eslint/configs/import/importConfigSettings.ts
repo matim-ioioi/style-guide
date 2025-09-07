@@ -1,7 +1,8 @@
+import type { InfiniteDepthConfigWithExtends } from 'typescript-eslint'
 import type { Context } from '../types'
 import { JS_PATHS, TS_PATHS, VUE_PATHS } from '../../constants/paths.js'
 
-export const importConfigSettings = (context: Context) => {
+export const importConfigSettings = (context: Context): InfiniteDepthConfigWithExtends => {
   const files = [...JS_PATHS, ...TS_PATHS]
   const ignore = [/__generated__/]
   const extensions = ['.js', '.cjs', '.mjs', '.jsx', '.ts', '.tsx', '.cts', '.mts']

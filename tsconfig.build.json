@@ -9,6 +9,8 @@
     "noEmit": false,
     "sourceMap": false,
     "declaration": true,
+    "emitDeclarationOnly": true,
+    "composite": false,
     "outDir": "dist/eslint"
   },
   "include": ["src/eslint/**/*.ts"],

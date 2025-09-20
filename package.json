@@ -1,6 +1,6 @@
 {
   "name": "@timmio/style-guide",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Style guide tools (ESLint 9, Prettier, Stylelint, TS) for dev web applications",
   "publishConfig": {
     "access": "public"
@@ -43,7 +43,10 @@
     "tslint": "tsc --noEmit --skipLibCheck",
     "lint": "npm run eslint && npm run tslint",
     "lint:fix": "npm run eslint:fix && npm run tslint",
-    "build": "tsc --project tsconfig.build.json",
+    "build:clean": "rm -rf dist",
+    "build:types": "tsc --project tsconfig.build.json",
+    "build:lib": "node esbuild.config.js",
+    "build": "npm run build:lib && npm run build:types",
     "prepack": "npm run lint && npm run build"
   },
   "dependencies": {
@@ -74,6 +77,8 @@
   },
   "devDependencies": {
     "@types/node": "22.13.14",
+    "esbuild": "^0.25.10",
+    "fast-glob": "^3.3.3",
     "husky": "8.0.3",
     "jiti": "2.5.1"
   },

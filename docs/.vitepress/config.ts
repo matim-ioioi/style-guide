@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: '/style-guide/',
   title: "Style Guide",
   description: "Style guide tools (ESLint 9, Prettier, Stylelint) for web applications",
   head: [['link', { rel: 'icon', href: '/assets/favicon.ico' }]],

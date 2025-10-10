@@ -15,7 +15,7 @@ pnpm:
 pnpm add @timmio/style-guide --dev
 ```
 
-## ESLint
+## Dependencies
 
 You must install the required dependencies yourself
 

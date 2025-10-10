@@ -58,3 +58,4 @@ timmio-style-guide-*.tgz
 # Vitepress
 docs/.vitepress/dist
 docs/.vitepress/cache
+!docs/.vitepress/config.ts

@@ -1,14 +1,8 @@
-# Style Guide (ESLint, Prettier, Stylelint) for web applications
+# Documentation
 
-## Introduction
+Please refer to documentation: https://matim-ioioi.github.io/style-guide/
 
-This repository has configurations for ESLint, Prettier, Stylelint
-
-- [ESLint](#eslint)
-- [Prettier](#prettier)
-- [StyleLint](#stylelint)
-
-## Installing
+# Installation
 
 npm:
 ```shell
@@ -25,94 +19,20 @@ pnpm:
 pnpm add @timmio/style-guide --dev
 ```
 
-## ESLint
+## Dependencies
 
-To use ESLint, add the file named `eslint.config.js` to your project root:
+You must install the required dependencies yourself
 
-<details><summary>Example of ESLint configuration</summary>
-
-```javascript
-import { createESLintConfigs } from '@timmio/style-guide/eslint'
-
-export default createESLintConfigs(
-    {
-      // Add ignore paths
-      ignore: [/* YOUR ADDITIONAL IGNORE PATHS */],
-      // Add browser environment
-      browser: true, // default: true
-      // Add node environment
-      node: true, // default: true
-      // Add graphql linting
-      graphql: false, // default: false
-      // Add vue linting
-      vue: true, // default: true
-      // You can add custom pathGroups for ordering imports
-      import: {
-        order: {
-          pathGroups: {
-            append: [
-              { pattern: '@components/**', group: 'parent', position: 'before' },
-              { pattern: '@constants/**', group: 'parent', position: 'before' },
-            ],
-          },
-        },
-      },
-      // You must provide paths to tsconfigs
-      tsConfigs: {
-        // For script (including .{js,mjs,cjs,jsx and ts,mts,cts,tsx} files)
-        script: {
-          tsConfigPath: './tsconfig.json',
-          tsConfigRootDir: import.meta.dirname,
-        },
-        // For vue if you use it (including .vue files)
-        // ATTENTION! For correctly checking and autofixing vue-files by ESLint you need create separately tsconfig-file which can extends your common tsconfig-file
-        // but it must have "**/*.vue" in "include" (or "files") parameter
-        vue: {
-          tsConfigPath: './tsconfig.vue.json',
-          tsConfigRootDir: import.meta.dirname,
-        },
-        // For your additional cases (for example use other tsconfig for server directory)
-        extraConfigs: [
-          {
-            files: ['./src/server/*.{js,ts}', './src/server/**/*.{js,ts}'],
-            tsConfigPath: './src/server/tsconfig.json',
-            tsConfigRootDir: import.meta.dirname,
-          },
-        ],
-      },
-    },
-    // You can add extra configs
-    {
-      files: ['*.vue', '**/*.vue'],
-      rules: {
-        'vue/multi-word-component-names': 'off',
-      },
-    }
-)
-```
-</details>
-
-**Your tsconfigs also must have `"eslint.config.js"` in `"include"` option:**
-```json
-{
-  "include": ["eslint.config.js", ...]
-}
+:::code-group
+```shell [vue]
+npm install eslint-plugin-vue@^10.0.0 vue-eslint-parser@^10.1.0 -D
 ```
 
-## Prettier
-
-To use Prettier, add this line to `package.json`:
-```json
-{
-  "prettier": "@timmio/style-guide/prettier"
-}
+```shell [stylelint]
+npm install stylelint@^16.17.0 stylelint-config-css-modules@^4.4.0 stylelint-config-recess-order@^6.0.0 stylelint-config-recommended@^15.0.0 stylelint-config-recommended-vue@^1.6.0 stylelint-config-standard-scss@^14.0.0 postcss@^8.5.0 postcss-html@^1.8.0 postcss-scss@^4.0.0 -D
 ```
 
-## StyleLint
-
-To use StyleLint, add the file named `stylelint.config.js`:
-```javascript
-module.exports = {
-  extends: ['@timmio/style-guide/stylelint'],
-}
+```shell [graphql]
+npm install @graphql-eslint/eslint-plugin@^4.4.0 -D
 ```
+:::

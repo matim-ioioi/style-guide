@@ -1,6 +1,6 @@
 {
   "name": "@timmio/style-guide",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Style guide tools (ESLint 9, Prettier, Stylelint) for web applications",
   "publishConfig": {
     "access": "public"
@@ -49,7 +49,7 @@
     "build:types": "tsc --project tsconfig.build.json",
     "build:lib": "node esbuild.config.js",
     "build": "npm run build:clean && npm run build:lib && npm run build:types",
-    "prepack": "npm run lint && npm run build"
+    "prepack": "npm run lint && npm run build && npm run docs:build"
   },
   "peerDependencies": {
     "@eslint-community/eslint-plugin-eslint-comments": "^4.4.0",

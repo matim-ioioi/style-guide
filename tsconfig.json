@@ -1,11 +1,18 @@
 {
-  "extends": ["./src/typescript/tsconfig.client.json"],
-  "ts-node": {
-    "compilerOptions": {
-      "module": "NodeNext"
-    }
-  },
   "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["ESNext", "ESNext.AsyncIterable", "DOM", "DOM.Iterable"],
+    "moduleResolution": "node",
+    "noEmit": true,
+    "sourceMap": false,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "jsx": "preserve",
+    "strict": true,
+    "newLine": "lf",
     "allowJs": true,
     "checkJs": false,
     "baseUrl": ".",

@@ -1,7 +1,7 @@
 export type Context = {
   browser: boolean
   node: boolean
-  graphql: boolean
+  graphql: GraphqlConfigsOption
   vue: VueConfigsOption
   tsConfigs: TypeScriptConfigsOption
   testing?: TestingConfigsOption
@@ -14,6 +14,13 @@ export type TypeScriptConfig = {
   projectService?: boolean
 }
 
+export type GraphqlConfigsOption =
+  | {
+      schema: string
+      documents: string
+      operations: string
+    }
+  | false
 export type VueConfigsOption = { useTemplateTypeScriptParser?: boolean } | boolean
 
 export type TypeScriptConfigsOption = {
@@ -26,20 +33,22 @@ export type TestingConfigsOption = {
   paths?: string[]
 }
 
+export type ImportConfigsOption = {
+  order?: {
+    pathGroups?: {
+      prepend?: { pattern: string; group: string; position: string }[]
+      append?: { pattern: string; group: string; position: string }[]
+    }
+  }
+}
+
 export type CreateESLintConfigsOptions = {
   ignore?: string[]
   browser?: boolean
   node?: boolean
-  graphql?: boolean
+  graphql?: GraphqlConfigsOption
   vue?: VueConfigsOption
   tsConfigs: TypeScriptConfigsOption
   testing?: TestingConfigsOption
-  import?: {
-    order?: {
-      pathGroups?: {
-        prepend?: { pattern: string; group: string; position: string }[]
-        append?: { pattern: string; group: string; position: string }[]
-      }
-    }
-  }
+  import?: ImportConfigsOption
 }

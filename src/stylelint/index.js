@@ -423,7 +423,7 @@ export default {
     'length-zero-no-unit': true,
     'value-no-vendor-prefix': null,
     'property-no-vendor-prefix': null,
-    'keyframe-declaration-no-important': true,
+    'keyframe-declaration-no-important': null,
     'shorthand-property-no-redundant-values': true,
     'block-no-empty': [true, { severity: 'warning' }],
     'property-no-unknown': [true, { checkPrefixed: true }],
@@ -470,7 +470,7 @@ export default {
       'always',
       { except: ['after-declaration', 'first-nested'], ignore: ['after-comment', 'inside-single-line-block'] },
     ],
-    'declaration-no-important': [true, { severity: 'warning' }],
+    'declaration-no-important': null,
     'declaration-property-value-keyword-no-deprecated': null,
 
     'font-family-name-quotes': 'always-unless-keyword',

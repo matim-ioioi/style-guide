@@ -54,3 +54,7 @@ $RECYCLE.BIN/
 
 # Packed package
 timmio-style-guide-*.tgz
+
+# Vitepress
+docs/.vitepress/dist
+docs/.vitepress/cache

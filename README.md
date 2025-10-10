@@ -1,13 +1,12 @@
-# Style Guide (ESLint, Prettier, Stylelint, TypeScript) for web applications
+# Style Guide (ESLint, Prettier, Stylelint) for web applications
 
 ## Introduction
 
-This repository has configuration files for Prettier, Stylelint, TypeScript (tsconfigs) and out-of-the-box configuration for ESLint (including required dependencies)
+This repository has configurations for ESLint, Prettier, Stylelint
 
 - [ESLint](#eslint)
 - [Prettier](#prettier)
 - [StyleLint](#stylelint)
-- [TypeScript](#typescript)
 
 ## Installing
 
@@ -27,8 +26,6 @@ pnpm add @timmio/style-guide --dev
 ```
 
 ## ESLint
-
-> Note: ESLint is in the project dependencies, so there is no need to install it separately
 
 To use ESLint, add the file named `eslint.config.js` to your project root:
 
@@ -104,8 +101,6 @@ export default createESLintConfigs(
 
 ## Prettier
 
-> Note: Prettier is in the project dependencies, so there is no need to install it separately
-
 To use Prettier, add this line to `package.json`:
 ```json
 {
@@ -115,38 +110,9 @@ To use Prettier, add this line to `package.json`:
 
 ## StyleLint
 
-> Note: StyleLint is in the project dependencies, so there is no need to install it separately
-
 To use StyleLint, add the file named `stylelint.config.js`:
 ```javascript
 module.exports = {
   extends: ['@timmio/style-guide/stylelint'],
-}
-```
-
-## TypeScript
-
-> Note: TypeScript is in the project dependencies, so there is no need to install it separately
-
-To use TypeScript configs (tsconfig's), you can extend your `tsconfig`-files:
-```json
-{
-  "extends": "@timmio/style-guide/typescript/..."
-}
-```
-
-This repository has several configs for TypeScript:
-
-| Can use for | Config path                                           |
-|-------------|-------------------------------------------------------|
-| Client-side | `@timmio/style-guide/typescript/tsconfig.client.json` |
-| Server-side | `@timmio/style-guide/typescript/tsconfig.server.json` |
-
-> Attention! (limitation `ts-node` (bug with extending and exports))\
-> You must specify a relative path if your tsconfig.json placement is not root of a project (or root tsconfig has name not equal to "tsconfig.json")\
-> For example:
-```json
-{
-  "extends": "../../node_modules/@timmmio/style-guide/src/typescript/tsconfig.server.json"
 }
 ```

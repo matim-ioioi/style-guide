@@ -8,7 +8,7 @@ import { browserConfigs } from './base/browserConfigs.js'
 import { nodeConfigs } from './base/nodeConfigs.js'
 import { commentsConfigs } from './comments/commentsConfigs.js'
 import { createSettingsConfigs } from './createSettingsConfigs.js'
-import { graphqlConfigs } from './graphql/graphqlConfigs.js'
+import { createGraphqlConfigs } from './graphql/createGraphqlConfigs.js'
 import { createImportConfigs } from './import/createImportConfigs.js'
 import { createPrettierConfigs } from './prettier/createPrettierConfigs.js'
 import { createTypeScriptConfigs } from './typescript/createTypeScriptConfigs.js'
@@ -23,9 +23,9 @@ export const createESLintConfigs = (
     browser: true,
     node: true,
     graphql: false,
-    vue: true,
+    vue: false,
     ...userOptions,
-  }
+  } as const
   const eslintConfigs: InfiniteDepthConfigWithExtends[] = []
 
   const context: Context = {
@@ -54,7 +54,7 @@ export const createESLintConfigs = (
   eslintConfigs.push(createImportConfigs(context, options.import?.order?.pathGroups))
 
   if (context.graphql) {
-    eslintConfigs.push(graphqlConfigs)
+    eslintConfigs.push(createGraphqlConfigs(context))
   }
   if (context.vue) {
     eslintConfigs.push(createVueConfigs(context))

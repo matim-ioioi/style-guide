@@ -3,10 +3,13 @@ export default [
   'node_modules',
 
   // usually build dirs
-  'dist',
-  '.dist',
+  '**/dist/**',
+  '**/.dist/**',
 
   // nuxt
-  '.nuxt',
-  '.output',
+  '**/.nuxt/**',
+  '**/.output/**',
+
+  // vitepress
+  '**/.vitepress/**',
 ]

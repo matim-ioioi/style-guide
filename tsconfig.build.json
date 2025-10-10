@@ -1,17 +1,14 @@
 {
-  "extends": ["./src/typescript/tsconfig.client.json"],
+  "extends": ["./tsconfig.json"],
   "compilerOptions": {
-    "allowJs": true,
-    "checkJs": false,
     "baseUrl": ".",
     "typeRoots": ["node_modules/@types"],
     "types": ["node"],
     "noEmit": false,
-    "sourceMap": false,
     "declaration": true,
     "emitDeclarationOnly": true,
     "composite": false,
-    "outDir": "dist/eslint"
+    "outDir": "dist/eslint",
   },
   "include": ["src/eslint/**/*.ts"],
   "exclude": ["node_modules"]

@@ -1,3 +1,4 @@
+// File glob patterns
 const JS_EXTENSIONS = 'js,mjs,cjs,jsx'
 const TS_EXTENSIONS = 'ts,mts,cts,tsx'
 const GQL_EXTENSIONS = 'gql,graphql'
@@ -16,4 +17,21 @@ export const TESTING_PATHS = [
   `**/*.spec.{${JS_TS_EXTENSIONS}}`,
   `**/__test__/*.{${JS_TS_EXTENSIONS}}`,
   `**/__test__/**/*.{${JS_TS_EXTENSIONS}}`,
+]
+
+// Default ignores
+export const DEFAULT_IGNORES = [
+  // node_modules
+  'node_modules',
+
+  // usually build dirs
+  '**/dist/**',
+  '**/.dist/**',
+
+  // nuxt
+  '**/.nuxt/**',
+  '**/.output/**',
+
+  // vitepress
+  '**/.vitepress/**',
 ]

@@ -3,7 +3,7 @@ import type { ESLint } from 'eslint'
 import type { InfiniteDepthConfigWithExtends } from 'typescript-eslint'
 import type { Context } from '../types'
 import { createRequire } from 'node:module'
-import { GQL_PATHS } from '../../constants/paths.js'
+import { GQL_PATHS } from '../../constants.js'
 
 const require = createRequire(import.meta.url)
 

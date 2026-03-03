@@ -1,18 +1,33 @@
 import esbuild from 'esbuild'
-import fg from 'fast-glob'
-
-const entryPoints = await fg(['src/eslint/**/*.ts', '!src/eslint/type.ts'])
 
 await esbuild.build({
-  entryPoints,
-  outdir: 'dist/eslint',
-  bundle: false,
-  splitting: false,
+  entryPoints: ['src/eslint/configs/createESLintConfigs.ts'],
+  outfile: 'dist/eslint/index.js',
+  bundle: true,
   minify: true,
   format: 'esm',
-  platform: 'neutral',
+  platform: 'node',
   sourcemap: false,
   drop: ['console', 'debugger'],
   target: 'node22',
   tsconfig: 'tsconfig.json',
+  external: [
+    '@eslint-community/eslint-plugin-eslint-comments',
+    '@eslint-community/eslint-plugin-eslint-comments/configs',
+    '@graphql-eslint/eslint-plugin',
+    '@stylistic/eslint-plugin',
+    'eslint',
+    'eslint/config',
+    'eslint-config-prettier',
+    'eslint-import-resolver-typescript',
+    'eslint-plugin-import-x',
+    'eslint-plugin-import-x/meta',
+    'eslint-plugin-prettier',
+    'eslint-plugin-prettier/recommended',
+    'eslint-plugin-vue',
+    'globals',
+    'typescript',
+    'typescript-eslint',
+    'vue-eslint-parser',
+  ],
 })

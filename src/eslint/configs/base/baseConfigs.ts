@@ -2,6 +2,24 @@ import type { InfiniteDepthConfigWithExtends } from 'typescript-eslint'
 import stylisticPlugin from '@stylistic/eslint-plugin'
 import globals from 'globals'
 
+export const browserConfigs: InfiniteDepthConfigWithExtends = [
+  {
+    name: 'style-guide-browser',
+    languageOptions: {
+      globals: globals.browser,
+    },
+  },
+]
+
+export const nodeConfigs: InfiniteDepthConfigWithExtends = [
+  {
+    name: 'style-guide-node',
+    languageOptions: {
+      globals: globals.node,
+    },
+  },
+]
+
 export const baseConfigs: InfiniteDepthConfigWithExtends = [
   {
     name: 'style-guide-base',

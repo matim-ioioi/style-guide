@@ -2,10 +2,8 @@ import type { InfiniteDepthConfigWithExtends } from 'typescript-eslint'
 import type { Context, CreateESLintConfigsOptions } from './types'
 import { globalIgnores } from 'eslint/config'
 import typescriptEslint from 'typescript-eslint'
-import defaultIgnores from '../constants/ignores.js'
-import { baseConfigs } from './base/baseConfigs.js'
-import { browserConfigs } from './base/browserConfigs.js'
-import { nodeConfigs } from './base/nodeConfigs.js'
+import { DEFAULT_IGNORES } from '../constants.js'
+import { baseConfigs, browserConfigs, nodeConfigs } from './base/baseConfigs.js'
 import { commentsConfigs } from './comments/commentsConfigs.js'
 import { createSettingsConfigs } from './createSettingsConfigs.js'
 import { createGraphqlConfigs } from './graphql/createGraphqlConfigs.js'
@@ -38,12 +36,12 @@ export const createESLintConfigs = (
 
   // Order is important for all configs!!!
 
-  eslintConfigs.push(globalIgnores([...defaultIgnores, ...(options.ignore ? options.ignore : [])]))
+  eslintConfigs.push(globalIgnores([...DEFAULT_IGNORES, ...(options.ignore ? options.ignore : [])]))
 
-  if (context.node) {
+  if (context.browser) {
     eslintConfigs.push(browserConfigs)
   }
-  if (context.browser) {
+  if (context.node) {
     eslintConfigs.push(nodeConfigs)
   }
 

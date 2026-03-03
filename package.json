@@ -1,6 +1,6 @@
 {
   "name": "@timmio/style-guide",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Style guide tools (ESLint 9, Prettier, Stylelint) for web applications",
   "publishConfig": {
     "access": "public"
@@ -26,14 +26,15 @@
   "homepage": "https://github.com/matim-ioioi/style-guide#readme",
   "type": "module",
   "exports": {
-    "./eslint": "./dist/eslint/configs/createESLintConfigs.js",
+    "./eslint": "./dist/eslint/index.js",
     "./prettier": "./src/prettier/index.js",
     "./stylelint": "./src/stylelint/index.js",
     "./*": "./*"
   },
   "files": [
-    "src/",
-    "dist/"
+    "dist/",
+    "src/prettier/",
+    "src/stylelint/"
   ],
   "scripts": {
     "prepare": "husky install",

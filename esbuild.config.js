@@ -1,7 +1,7 @@
 import esbuild from 'esbuild'
 
 await esbuild.build({
-  entryPoints: ['src/eslint/configs/createESLintConfigs.ts'],
+  entryPoints: ['src/eslint/index.ts'],
   outfile: 'dist/eslint/index.js',
   bundle: true,
   minify: true,

@@ -1,6 +1,6 @@
 {
   "name": "@timmio/style-guide",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Style guide tools (ESLint 9, Prettier, Stylelint) for web applications",
   "publishConfig": {
     "access": "public"

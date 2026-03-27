@@ -44,6 +44,8 @@ export const createESLintConfigs = (
     eslintConfigs.push(nodeConfigs)
   }
 
+  eslintConfigs.push(baseConfigs)
+
   eslintConfigs.push(commentsConfigs)
 
   eslintConfigs.push(createTypeScriptConfigs(context))
@@ -57,7 +59,6 @@ export const createESLintConfigs = (
     eslintConfigs.push(createVueConfigs(context))
   }
 
-  eslintConfigs.push(baseConfigs)
   eslintConfigs.push(createSettingsConfigs(context))
 
   return typescriptEslint.config(eslintConfigs, extraConfigs ?? [])

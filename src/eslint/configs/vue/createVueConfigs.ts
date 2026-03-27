@@ -67,12 +67,14 @@ export const createVueConfigs = (context: Context): InfiniteDepthConfigWithExten
     name: 'style-guide-vue-default',
     files: [...VUE_PATHS],
     rules: {
+      'vue/singleline-html-element-content-newline': 'off',
+      'vue/max-attributes-per-line': 'off',
       'vue/no-v-text-v-html-on-component': 'off',
       'vue/no-v-html': 'off',
       'vue/require-default-prop': 'off',
       'vue/no-side-effects-in-computed-properties': 'error',
       'vue/object-curly-spacing': ['error', 'always', { objectsInObjects: true, arraysInObjects: true }],
-      'vue/component-name-in-template-casing': ['error', 'kebab-case', { ignores: [] }],
+      'vue/component-name-in-template-casing': ['error', 'kebab-case', { ignores: [], registeredComponentsOnly: false }],
       'vue/v-on-event-hyphenation': ['error', 'always', { ignore: ['update:modelValue'] }],
       'vue/multi-word-component-names': ['error', { ignores: ['index'] }],
       'vue/html-self-closing': [

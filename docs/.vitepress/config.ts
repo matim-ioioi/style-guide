@@ -4,7 +4,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   base: '/style-guide/',
   title: "Style Guide",
-  description: "Style guide tools (ESLint 9, Prettier, Stylelint) for web applications",
+  description: "Style guide tools (ESLint 9, Stylelint) for web applications",
   head: [['link', { rel: 'icon', href: '/style-guide/favicon.ico' }]],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
@@ -12,7 +12,6 @@ export default defineConfig({
       { text: 'Home', link: '/' },
       { text: 'Get Started', link: '/installation' },
       { text: 'ESLint', link: '/eslint' },
-      { text: 'Prettier', link: '/prettier' },
       { text: 'Stylelint', link: '/stylelint' },
     ],
 
@@ -22,7 +21,6 @@ export default defineConfig({
         items: [
           { text: 'Installation', link: '/installation' },
           { text: 'ESLint', link: '/eslint' },
-          { text: 'Prettier', link: '/prettier' },
           { text: 'Stylelint', link: '/stylelint' },
         ]
       }

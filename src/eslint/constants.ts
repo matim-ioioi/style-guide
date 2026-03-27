@@ -8,7 +8,7 @@ export const JS_PATHS = [`*.{${JS_EXTENSIONS}}`, `**/*.{${JS_EXTENSIONS}}`]
 
 export const TS_PATHS = [`*.{${TS_EXTENSIONS}}`, `**/*.{${TS_EXTENSIONS}}`]
 
-export const VUE_PATHS = [`*.vue`, `**/*.vue`]
+export const VUE_PATHS = ['*.vue', '**/*.vue']
 
 export const GQL_PATHS = [`*.{${GQL_EXTENSIONS}}`, `**/*.{${GQL_EXTENSIONS}}`]
 

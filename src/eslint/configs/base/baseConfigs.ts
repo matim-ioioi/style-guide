@@ -64,6 +64,15 @@ export const baseConfigs: InfiniteDepthConfigWithExtends = [
       '@stylistic/linebreak-style': ['error', 'unix'],
       '@stylistic/object-curly-spacing': ['error', 'always', { objectsInObjects: true, arraysInObjects: true }],
       '@stylistic/padding-line-between-statements': ['error', { blankLine: 'always', prev: '*', next: 'return' }],
+      '@stylistic/indent': ['error', 2, { SwitchCase: 1, offsetTernaryExpressions: true }],
+      '@stylistic/arrow-parens': ['error', 'always'],
+      '@stylistic/comma-dangle': [
+        'error',
+        { arrays: 'always-multiline', objects: 'always-multiline', imports: 'always-multiline', exports: 'always-multiline', functions: 'never' },
+      ],
+      '@stylistic/quote-props': ['error', 'as-needed'],
+      '@stylistic/no-trailing-spaces': 'error',
+      '@stylistic/eol-last': ['error', 'always'],
     },
   },
 ]

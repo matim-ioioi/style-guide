@@ -16,10 +16,10 @@ export type TypeScriptConfig = {
 
 export type GraphqlConfigsOption =
   | {
-      schema: string
-      documents: string
-      operations: string
-    }
+    schema: string
+    documents: string
+    operations: string
+  }
   | false
 export type VueConfigsOption = { useTemplateTypeScriptParser?: boolean } | boolean
 

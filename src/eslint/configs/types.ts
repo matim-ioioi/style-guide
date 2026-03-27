@@ -1,54 +1,54 @@
 export type Context = {
-  browser: boolean
-  node: boolean
-  graphql: GraphqlConfigsOption
-  vue: VueConfigsOption
-  tsConfigs: TypeScriptConfigsOption
-  testing?: TestingConfigsOption
+  browser: boolean;
+  node: boolean;
+  graphql: GraphqlConfigsOption;
+  vue: VueConfigsOption;
+  tsConfigs: TypeScriptConfigsOption;
+  testing?: TestingConfigsOption;
 }
 
 export type TypeScriptConfig = {
-  files?: string[]
-  tsConfigPath: string
-  tsConfigRootDir: string
-  projectService?: boolean
+  files?: string[];
+  tsConfigPath: string;
+  tsConfigRootDir: string;
+  projectService?: boolean;
 }
 
 export type GraphqlConfigsOption =
   | {
-    schema: string
-    documents: string
-    operations: string
+    schema: string;
+    documents: string;
+    operations: string;
   }
   | false
 export type VueConfigsOption = { useTemplateTypeScriptParser?: boolean } | boolean
 
 export type TypeScriptConfigsOption = {
-  script: Omit<TypeScriptConfig, 'files'>
-  vue?: Omit<TypeScriptConfig, 'files'>
-  extraConfigs?: TypeScriptConfig[]
+  script: Omit<TypeScriptConfig, 'files'>;
+  vue?: Omit<TypeScriptConfig, 'files'>;
+  extraConfigs?: TypeScriptConfig[];
 }
 
 export type TestingConfigsOption = {
-  paths?: string[]
+  paths?: string[];
 }
 
 export type ImportConfigsOption = {
   order?: {
     pathGroups?: {
-      prepend?: { pattern: string; group: string; position: string }[]
-      append?: { pattern: string; group: string; position: string }[]
-    }
-  }
+      prepend?: { pattern: string; group: string; position: string }[];
+      append?: { pattern: string; group: string; position: string }[];
+    };
+  };
 }
 
 export type CreateESLintConfigsOptions = {
-  ignore?: string[]
-  browser?: boolean
-  node?: boolean
-  graphql?: GraphqlConfigsOption
-  vue?: VueConfigsOption
-  tsConfigs: TypeScriptConfigsOption
-  testing?: TestingConfigsOption
-  import?: ImportConfigsOption
+  ignore?: string[];
+  browser?: boolean;
+  node?: boolean;
+  graphql?: GraphqlConfigsOption;
+  vue?: VueConfigsOption;
+  tsConfigs: TypeScriptConfigsOption;
+  testing?: TestingConfigsOption;
+  import?: ImportConfigsOption;
 }

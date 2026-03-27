@@ -69,6 +69,8 @@ export const createVueConfigs = (context: Context): InfiniteDepthConfigWithExten
     rules: {
       'vue/singleline-html-element-content-newline': 'off',
       'vue/max-attributes-per-line': 'off',
+      'vue/html-quotes': ['error', 'double'],
+      'vue/no-spaces-around-equal-signs-in-attribute': 'error',
       'vue/no-v-text-v-html-on-component': 'off',
       'vue/no-v-html': 'off',
       'vue/require-default-prop': 'off',

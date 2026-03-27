@@ -1,6 +1,6 @@
 {
   "name": "@timmio/style-guide",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Style guide tools (ESLint 9, Prettier, Stylelint) for web applications",
   "publishConfig": {
     "access": "public"
@@ -71,7 +71,6 @@
     "typescript-eslint": "^8.29.0",
     "vue-eslint-parser": "^10.1.0"
   },
-
   "peerDependenciesMeta": {
     "@graphql-eslint/eslint-plugin": {
       "optional": true

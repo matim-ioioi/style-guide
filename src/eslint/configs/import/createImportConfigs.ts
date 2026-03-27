@@ -29,7 +29,7 @@ const createImportOrderRules = (
     alphabetize: { order: 'asc' | 'desc'; orderImportKind: 'asc' | 'desc'; caseInsensitive: boolean }
     sortTypesGroup: boolean
     pathGroupsExcludedImportTypes: string[]
-  },
+  }
 ] => {
   return [
     'error',

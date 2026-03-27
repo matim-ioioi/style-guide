@@ -8,7 +8,6 @@ import { commentsConfigs } from './comments/commentsConfigs.js'
 import { createSettingsConfigs } from './createSettingsConfigs.js'
 import { createGraphqlConfigs } from './graphql/createGraphqlConfigs.js'
 import { createImportConfigs } from './import/createImportConfigs.js'
-import { createPrettierConfigs } from './prettier/createPrettierConfigs.js'
 import { createTypeScriptConfigs } from './typescript/createTypeScriptConfigs.js'
 import { createVueConfigs } from './vue/createVueConfigs.js'
 
@@ -59,7 +58,6 @@ export const createESLintConfigs = (
   }
 
   eslintConfigs.push(baseConfigs)
-  eslintConfigs.push(createPrettierConfigs(context))
   eslintConfigs.push(createSettingsConfigs(context))
 
   return typescriptEslint.config(eslintConfigs, extraConfigs ?? [])

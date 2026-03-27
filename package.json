@@ -1,6 +1,6 @@
 {
   "name": "@timmio/style-guide",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "Style guide tools (ESLint 9, Prettier, Stylelint) for web applications",
   "publishConfig": {
     "access": "public"
@@ -27,13 +27,11 @@
   "type": "module",
   "exports": {
     "./eslint": "./dist/eslint/index.js",
-    "./prettier": "./src/prettier/index.js",
     "./stylelint": "./src/stylelint/index.js",
     "./*": "./*"
   },
   "files": [
     "dist/",
-    "src/prettier/",
     "src/stylelint/"
   ],
   "scripts": {
@@ -57,15 +55,12 @@
     "@graphql-eslint/eslint-plugin": "^4.4.0",
     "@stylistic/eslint-plugin": "^4.2.0",
     "eslint": "^9.23.0",
-    "eslint-config-prettier": "^10.1.1",
     "eslint-import-resolver-typescript": "^4.3.0",
     "eslint-plugin-import-x": "^4.10.0",
-    "eslint-plugin-prettier": "^5.2.0",
     "eslint-plugin-vue": "^10.0.0",
     "postcss": "^8.5.0",
     "postcss-html": "^1.8.0",
     "postcss-scss": "^4.0.0",
-    "prettier": "^3.5.3",
     "stylelint": "^16.17.0",
     "stylelint-config-css-modules": "^4.4.0",
     "stylelint-config-recess-order": "^6.0.0",
@@ -76,6 +71,7 @@
     "typescript-eslint": "^8.29.0",
     "vue-eslint-parser": "^10.1.0"
   },
+
   "peerDependenciesMeta": {
     "@graphql-eslint/eslint-plugin": {
       "optional": true
@@ -124,10 +120,8 @@
     "@types/node": "22.13.14",
     "esbuild": "^0.25.10",
     "eslint": "^9.23.0",
-    "eslint-config-prettier": "^10.1.1",
     "eslint-import-resolver-typescript": "^4.3.0",
     "eslint-plugin-import-x": "^4.10.0",
-    "eslint-plugin-prettier": "^5.2.0",
     "eslint-plugin-vue": "^10.0.0",
     "fast-glob": "^3.3.3",
     "husky": "8.0.3",
@@ -135,7 +129,6 @@
     "postcss": "^8.5.0",
     "postcss-html": "^1.8.0",
     "postcss-scss": "^4.0.0",
-    "prettier": "^3.5.3",
     "stylelint": "^16.17.0",
     "stylelint-config-css-modules": "^4.4.0",
     "stylelint-config-recess-order": "^6.0.0",
@@ -149,6 +142,5 @@
   },
   "engines": {
     "node": ">=22"
-  },
-  "prettier": "./src/prettier/index.js"
+  }
 }

@@ -106,8 +106,9 @@ export const baseConfigs: InfiniteDepthConfigWithExtends = [
       '@stylistic/spaced-comment': ['error', 'always', { markers: ['#region', '#endregion'] }],
       '@stylistic/no-whitespace-before-property': 'error',
       '@stylistic/rest-spread-spacing': ['error', 'never'],
-      '@stylistic/lines-between-class-members': ['error', 'always'],
+      '@stylistic/lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
 
+      'no-shadow': 'error',
       'prefer-const': 'error',
       'object-shorthand': 'error',
       'prefer-template': 'error',

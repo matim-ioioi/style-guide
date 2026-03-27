@@ -103,7 +103,7 @@ export const baseConfigs: InfiniteDepthConfigWithExtends = [
       '@stylistic/array-bracket-spacing': ['error', 'never'],
       '@stylistic/computed-property-spacing': ['error', 'never'],
       '@stylistic/template-curly-spacing': ['error', 'never'],
-      '@stylistic/spaced-comment': ['error', 'always'],
+      '@stylistic/spaced-comment': ['error', 'always', { markers: ['#region', '#endregion'] }],
       '@stylistic/no-whitespace-before-property': 'error',
       '@stylistic/rest-spread-spacing': ['error', 'never'],
       '@stylistic/lines-between-class-members': ['error', 'always'],

@@ -8,14 +8,14 @@ import { getScriptFiles, getTestingFiles } from '../../utils/files.js'
 // --- Import order rules builder ---
 
 type PathGroupItem = {
-  pattern: string;
-  group: string;
-  position: string;
+  pattern: string
+  group: string
+  position: string
 }
 
 type ImportOrderPathGroups = {
-  prepend?: PathGroupItem[];
-  append?: PathGroupItem[];
+  prepend?: PathGroupItem[]
+  append?: PathGroupItem[]
 }
 
 const createImportOrderRules = (
@@ -23,12 +23,12 @@ const createImportOrderRules = (
 ): [
   'error',
   {
-    groups: string[];
-    pathGroups: PathGroupItem[];
-    'newlines-between': 'ignore';
-    alphabetize: { order: 'asc' | 'desc'; orderImportKind: 'asc' | 'desc'; caseInsensitive: boolean };
-    sortTypesGroup: boolean;
-    pathGroupsExcludedImportTypes: string[];
+    groups: string[]
+    pathGroups: PathGroupItem[]
+    'newlines-between': 'ignore'
+    alphabetize: { order: 'asc' | 'desc'; orderImportKind: 'asc' | 'desc'; caseInsensitive: boolean }
+    sortTypesGroup: boolean
+    pathGroupsExcludedImportTypes: string[]
   }
 ] => {
   return [
@@ -87,7 +87,7 @@ const importConfigDefault = (context: Context, pathGroups?: ImportOrderPathGroup
         'error',
         {
           ignoreCase: true,
-          ignoreDeclarationSort: true, // Uses eslint-plugin-import-x for sorting by line number instead default sort-imports
+          ignoreDeclarationSort: true, // Uses eslint-plugin-import-x for sorting instead
           ignoreMemberSort: false,
           memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
           allowSeparatedGroups: true,

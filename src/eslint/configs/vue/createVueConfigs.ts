@@ -58,7 +58,7 @@ export const createVueConfigs = (context: Context): InfiniteDepthConfigWithExten
   const vueConfigRecommended: InfiniteDepthConfigWithExtends = eslintVuePlugin.configs['flat/recommended'].map(
     (config) => ({
       ...config,
-      // must override cause vuePlugin.configs['flat/recommended'] has rules that will be applied to all files without this overriding
+      // must override: flat/recommended applies rules to all files without this
       files: [...VUE_PATHS],
     })
   )
@@ -67,16 +67,26 @@ export const createVueConfigs = (context: Context): InfiniteDepthConfigWithExten
     name: 'style-guide-vue-default',
     files: [...VUE_PATHS],
     rules: {
+      'vue/block-order': ['error', { order: ['template', 'script', 'style'] }],
+      'vue/define-macros-order': ['error', {
+        order: ['defineOptions', 'defineProps', 'defineEmits', 'defineSlots', 'defineModel'],
+        defineExposeLast: false,
+      }],
+      'vue/padding-line-between-blocks': ['error', 'always'],
       'vue/singleline-html-element-content-newline': 'off',
       'vue/max-attributes-per-line': 'off',
       'vue/html-quotes': ['error', 'double'],
+      'vue/prefer-true-attribute-shorthand': 'error',
       'vue/no-spaces-around-equal-signs-in-attribute': 'error',
       'vue/no-v-text-v-html-on-component': 'off',
       'vue/no-v-html': 'off',
       'vue/require-default-prop': 'off',
       'vue/no-side-effects-in-computed-properties': 'error',
       'vue/object-curly-spacing': ['error', 'always', { objectsInObjects: true, arraysInObjects: true }],
-      'vue/component-name-in-template-casing': ['error', 'kebab-case', { ignores: [], registeredComponentsOnly: false }],
+      'vue/component-name-in-template-casing': ['error', 'kebab-case', {
+        ignores: [],
+        registeredComponentsOnly: false,
+      }],
       'vue/v-on-event-hyphenation': ['error', 'always', { ignore: ['update:modelValue'] }],
       'vue/multi-word-component-names': ['error', { ignores: ['index'] }],
       'vue/html-self-closing': [

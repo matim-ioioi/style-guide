@@ -28,7 +28,7 @@ const tsConfigRecommended = (context: Context): InfiniteDepthConfigWithExtends[]
 
   return typescriptEslint.configs.recommendedTypeChecked.map((config) => ({
     ...config,
-    // we must override cause typescriptEslint.configs.recommendedTypeChecked has rules that will be applied to all files without this overriding
+    // must override: recommendedTypeChecked applies rules to all files without this
     files,
   }))
 }
